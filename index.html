@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Krack</title>
+<link rel="stylesheet" href="style1.css">
+
+<style>
+/* Ensures login button always stays on top */
+#loginArea, #loginBtn, #userBox {
+    z-index: 9999 !important;
+    position: fixed;
+}
+
+/* Prevent bubbles from covering login */
+.hero-bg, .bubble {
+    z-index: 1 !important;
+}
+
+#loginBtn {
+    color: white;
+    background: #6c63ff;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 0 12px rgba(108,99,255,0.8);
+}
+
+#loginArea {
+    position: absolute;
+    right: 20px;   /* move it left by reducing this number */
+    top: 15px;
+    z-index: 9999;
+}
+
+
+
+#userBox {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.35);
+    padding: 10px 16px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+#userPic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #6c63ff;
+}
+
+nav {
+    position: relative;
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- FORCE LOGIN ON EVERY PAGE -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+    window.location.href = "login.html";
+}
+</script>
+
+<!-- TOP NAVIGATION -->
+<header class="top-nav">
+    <a href="#" class="logo">Exam Krack</a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="contact.html">Contact</a>
+        <a href="disclamer.html">Disclaimer</a>
+    </nav>
+    <div class="hamburger" id="menuBtn"><span></span><span></span><span></span></div>
+</header>
+
+<!-- LOGIN AREA -->
+<div id="loginArea">
+    <a href="login.html" id="loginBtn">Login</a>
+
+    <div id="userBox">
+        <img id="userPic">
+        <span id="userName" style="font-size:18px; font-weight:700; color:#36d1dc;"></span>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="bubble" style="--size:80px;--x:10%;--y:20%;--delay:0s;"></div>
+        <div class="bubble" style="--size:50px;--x:70%;--y:50%;--delay:2s;"></div>
+        <div class="bubble" style="--size:100px;--x:40%;--y:70%;--delay:1s;"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1 class="hero-title">Exam Krack</h1>
+        <p class="hero-sub">Your path to success</p>
+        <div class="hero-buttons">
+            <a href="pdf.html" class="btn explore">Explore PDFs</a>
+            <a href="download.html" class="btn download">Download App</a>
+            <a href="video.html" class="btn video">Video Download</a>
+            <a href="test.html" class="btn test">Test</a>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <h2>Why Choose Exam Krack?</h2>
+    <div class="feature-cards">
+        <div class="feature-card">📘 <p>Comprehensive PDFs</p></div>
+        <div class="feature-card">🔭 <p>Physics Tips & Tricks</p></div>
+        <div class="feature-card">💻 <p>Computer Coding Guides</p></div>
+        <div class="feature-card">📚 <p>History & Science Notes</p></div>
+    </div>
+</section>
+
+<!-- SLIDER -->
+<section class="slider-section">
+    <h2>Explore Our Resources</h2>
+    <div class="slider">
+        <div class="slide-track">
+            <img src="img/tro.png">
+            <img src="img/man.png">
+            <img src="img/hand.png">
+            <img src="img/bulb.png">
+            <img src="img/bi.png">
+            <img src="img/mp.png">
+
+            <img src="img/tro.png">
+            <img src="img/man.png">
+            <img src="img/hand.png">
+            <img src="img/bulb.png">
+            <img src="img/bi.png">
+            <img src="img/mp.png">
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Exam Krack. All Rights Reserved.</p>
+    <p class="footer-note">Please read our <a href="disclamer.html">Disclaimer</a> and <a href="terms.html">Terms</a>.</p>
+</footer>
+
+<script>
+// MOBILE MENU
+document.getElementById("menuBtn").onclick = () => {
+    document.querySelector(".top-nav").classList.toggle("nav-active");
+};
+
+// LOGIN UI
+if(localStorage.getItem("loggedIn") === "true"){
+    document.getElementById("loginBtn").style.display = "none";
+    document.getElementById("userBox").style.display = "flex";
+
+    document.getElementById("userPic").src = localStorage.getItem("photo");
+    document.getElementById("userName").innerText = localStorage.getItem("user");
+}
+</script>
+
+</body>
+</html>

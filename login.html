@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login | Exam Krack</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background:linear-gradient(135deg,#0a0f24,#192a56);
+    color:white;
+}
+
+nav{
+    background:#00000070;
+    padding:15px 20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.center-box{
+    width:350px;
+    margin:60px auto;
+    padding:25px;
+    background:#ffffff15;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px #00000080;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:8px;
+}
+
+.btn{
+    margin-top:18px;
+    padding:12px;
+    width:100%;
+    background:#3498db;
+    border:none;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    text-align:center;
+    display:block;
+
+    transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+    box-shadow:0 3px 8px rgba(0,0,0,0.15);
+}
+
+.btn:hover {
+    background:#07619c;
+    transform: translateY(-2px);
+    box-shadow:0 6px 12px rgba(0,0,0,0.22);
+}
+
+
+
+#profilePic{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #00aaff;
+    margin:10px auto;
+    display:block;
+}
+</style>
+</head>
+
+<body>
+
+<nav>Exam Krack Login</nav>
+
+<div class="center-box">
+    <h2>Create Account / Login</h2>
+
+    <img id="profilePic" src="">
+
+    <input class="btn" type="file" accept="image/*" id="imageUpload" onchange="previewImage(event)">
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button class="btn" onclick="saveAccount()">Save Account</button>
+    <button class="btn" onclick="loginAccount()">Login</button>
+</div>
+
+<script>
+function previewImage(event){
+    profilePic.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function saveAccount(){
+    if(!username.value || !password.value || profilePic.src === ""){
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("user", username.value);
+    localStorage.setItem("pass", password.value);
+    localStorage.setItem("photo", profilePic.src);
+
+    alert("Account created!");
+}
+
+function loginAccount(){
+    if(username.value === localStorage.getItem("user") &&
+       password.value === localStorage.getItem("pass")){
+        
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html";
+    }
+    else alert("Wrong username or password");
+}
+
+if(localStorage.getItem("loggedIn") === "true"){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

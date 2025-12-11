@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Krack - Enter ID</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<header class="top-nav">
+    <a href="#" class="logo">Exam Krack</a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="contact.html">Contact</a>
+        <a href="disclamer.html">Disclaimer</a>
+    </nav>
+    <div class="hamburger" id="menuBtn"><span></span><span></span><span></span></div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="bubble" style="--size:80px;--x:10%;--y:20%;--delay:0s;"></div>
+        <div class="bubble" style="--size:50px;--x:70%;--y:50%;--delay:2s;"></div>
+        <div class="bubble" style="--size:100px;--x:40%;--y:70%;--delay:1s;"></div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">Enter Your ID</h1>
+        <p class="hero-sub">Please enter the 4-character ID you received.</p>
+        <div class="hero-buttons">
+            <input type="text" id="id" placeholder="Enter your ID" style="padding: 10px; width: 250px; border-radius: 5px; border: 1px solid #ccc;">
+            <button onclick="verifyId()" class="btn explore">Verify ID</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Exam Krack. All Rights Reserved.</p>
+    <p class="footer-note">Please review our <a href="disclamer.html">Disclaimer</a> and <a href="terms.html">Terms of Service</a> before using our resources.</p>
+</footer>
+
+<script>
+document.getElementById("menuBtn").onclick = function() {
+    document.querySelector(".top-nav").classList.toggle("nav-active");
+};
+
+function verifyId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    const id = document.getElementById('id').value;
+    if (id && email) {
+        let userData = JSON.parse(localStorage.getItem('userData')) || {};
+        if (userData[email] && userData[email].id === id) {
+            window.location.href = 'test.html';
+        } else {
+            alert('Invalid ID. Please try again.');
+        }
+    } else {
+        alert('Please enter a valid ID.');
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Videos – Exam Krack</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+    /* RESET */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* --- COLOR & FONT PALETTE --- */
+    :root {
+        --bg-dark: #0d0c22;
+        --bg-light: #1c1642;
+        --primary: #6c63ff;
+        --secondary: #ff6584;
+        --accent: #36d1dc;
+        --text-light: #f0f2f5;
+        --text-medium: #a8b2d1;
+        --font-main: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+        margin: 0;
+        padding: 20px;
+        overflow-y: scroll !important; /* FIX SCROLL BAR */
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* TOP NAVIGATION */
+    .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        background: rgba(13, 12, 34, 0.7);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #e5e7eb;
+        text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { color: var(--text-medium); text-decoration: none; font-size: 16px; font-weight: 500; transition: color 0.3s, transform 0.3s; }
+    .nav-links a:hover { color: var(--accent); transform: translateY(-2px); }
+    .hamburger { display: none; cursor: pointer; z-index: 5000; }
+    .hamburger span { display: block; width: 25px; height: 3px; background: var(--primary); border-radius: 5px; transition: all 0.3s ease; margin: 5px 0; }
+    .nav-active .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-active .hamburger span:nth-child(2) { opacity: 0; }
+    .nav-active .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    /* PAGE CONTENT */
+    .page-content { padding: 120px 20px 60px; }
+    .title { font-size: 48px; margin-bottom: 10px; font-weight: 700; color: var(--text-light); }
+    .hero-sub { font-size: 22px; margin-top: 10px; color: var(--text-medium); margin-bottom: 40px; }
+
+    /* VIDEO PAGE STYLES */
+    .video-box {
+        background: rgba(28, 22, 66, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 700px;
+        margin: 20px auto;
+        border: 1px solid rgba(108, 99, 255, 0.2);
+    }
+    .video-box h2 { font-size: 28px; font-weight: 600; margin-bottom: 20px; }
+    .video-player video { width: 100%; max-width: 100%; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .video-player.locked video { filter: blur(8px); pointer-events: none; }
+
+    /* BUTTON STYLES */
+    .btn-card { padding: 12px; font-size: 15px; border-radius: 50px; border: none; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; }
+    .btn-card.premium { background-color: var(--secondary); }
+    .btn-card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .video-box .btn-card.premium { margin-top: 25px; display: inline-block; width: auto; padding: 12px 40px; }
+
+    /* FOOTER */
+    footer { padding: 40px 20px; background: var(--bg-dark); color: var(--text-medium); font-size: 14px; text-align: center; margin-top: 60px; }
+    .footer-note { margin-top: 10px; font-size: 12px; opacity: 0.7; }
+    .footer-note a { color: var(--accent); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media screen and (max-width: 768px) {
+        .nav-links {
+            position: fixed;
+            top: 77px;
+            right: -100%;
+            width: 100%;
+            height: calc(100vh - 77px);
+            background: var(--bg-dark);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            transition: right 0.5s ease-in-out;
+        }
+        .nav-links a { font-size: 24px; }
+        .top-nav.nav-active .nav-links { right: 0; }
+        .hamburger { display: block; }
+    }
+
+    @media screen and (max-width: 480px) {
+        .page-content { padding-top: 100px; }
+        .title { font-size: 36px; }
+        .hero-sub { font-size: 16px; }
+        .video-box { padding: 20px; }
+        .video-box h2 { font-size: 22px; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- TOP NAVIGATION -->
+<header class="top-nav">
+    <a href="index.html" class="logo">Exam Krack</a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="contact.html">Contact</a>
+        <a href="disclamer.html">Disclaimer</a>
+    </nav>
+    <div class="hamburger" id="menuBtn"><span></span><span></span><span></span></div>
+</header>
+
+<main class="page-content">
+    <h1 class="title">Premium Video Lessons</h1>
+    <p class="hero-sub">Pay once to unlock all videos</p>
+
+    <!-- Video Box -->
+    <div class="video-box">
+        <h2>Physics Chapter 1 – Force</h2>
+
+        <div id="video1" class="video-player locked">
+            <video width="560" controls controlsList="nodownload">
+                <source src="sample.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <button class="btn-card premium" onclick="payNow()">Unlock All Videos – ₹49</button>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Exam Krack. All Rights Reserved.</p>
+    <p class="footer-note">Please review our <a href="disclamer.html">Disclaimer</a> and <a href="terms.html">Terms of Service</a> before using our resources.</p>
+</footer>
+
+<script>
+document.getElementById("menuBtn").onclick = function() {
+    document.querySelector(".top-nav").classList.toggle("nav-active");
+};
+
+function payNow() {
+
+    var options = {
+        "key": "rzp_test_123456789",  // Replace with LIVE key
+        "amount": 4900,
+        "currency": "INR",
+        "name": "Exam Krack",
+        "description": "Premium Video Access",
+
+        "handler": function (response) {
+            document.querySelector('.video-player').classList.remove("locked");
+            document.querySelector('.btn-card.premium').style.display = 'none';
+            localStorage.setItem("videoUnlocked", "yes");
+            alert("Payment Successful! Video Unlocked.");
+        }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+}
+
+/* Auto unlock if previously bought */
+if (localStorage.getItem("videoUnlocked") === "yes") {
+    document.querySelector('.video-player').classList.remove("locked");
+    document.querySelector('.btn-card.premium').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

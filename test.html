@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Exam Krack - Tests</title>
+
+<style>
+/* GLOBAL */
+body { 
+  margin:0; 
+  background:#0f172a; 
+  color:white; 
+  font-family:Arial; 
+}
+
+/* NAV BAR */
+.top-nav {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#1e293b;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  z-index:999;
+}
+
+.top-nav .logo {
+  font-size:20px;
+  font-weight:bold;
+  color:white;
+  text-decoration:none;
+}
+
+.top-nav nav a {
+  margin-left:18px;
+  font-size:16px;
+  text-decoration:none;
+  color:white;
+  transition:0.2s;
+}
+
+.top-nav nav a:hover {
+  color:#60a5fa;
+}
+
+/* MAIN CONTENT */
+.test-container {
+  text-align:center;
+  padding:30px 15px;
+  max-width:760px;
+  margin:120px auto; /* FIXED NAVBAR SPACE */
+}
+
+/* TEST CARD */
+.test-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 18px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  margin:14px 0;
+}
+
+.take-btn {
+  display:block;
+  margin:auto;
+  padding:12px 22px;
+  background:#3b82f6;
+  color:white;
+  border-radius:10px;
+  font-size:16px;
+  text-decoration:none;
+  transition:0.2s;
+}
+
+.take-btn:hover {
+  background:#2563eb;
+}
+
+.completed-text {
+  color:#4ade80;
+  font-size:17px;
+  font-weight:bold;
+}
+
+</style>
+</head>
+<body>
+
+<header class="top-nav">
+  <a class="logo" href="index.html">Exam Krack</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="test.html">Tests</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+
+<div class="test-container">
+  <h1>Available Tests</h1>
+
+  <div class="test-item" data-test-id="python-basic" data-title="Python Basic - Beginner">
+
+      <div>
+          <h3>Python Basic - Beginner</h3>
+          <p>50 Questions || 90 Minutes</p>
+      </div>
+
+      <div>
+          <a class="take-btn" href="pythontest.html">Take Test</a>
+          <span class="completed-text" style="display:none">Completed ✔</span>
+      </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+function refreshTests() {
+    document.querySelectorAll('.test-item').forEach(item => {
+        const id = item.getAttribute('data-test-id');
+        const completed = localStorage.getItem('test-' + id) === 'completed';
+        const btn = item.querySelector('.take-btn');
+        const done = item.querySelector('.completed-text');
+        if(completed){
+            btn.style.display="none";
+            done.style.display="inline-block";
+        }
+    });
+}
+refreshTests();
+</script>
+
+</body>
+</html>

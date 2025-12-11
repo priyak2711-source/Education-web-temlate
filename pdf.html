@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Krack Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<header class="top-nav">
+    <a href="index.html" class="logo">Exam Krack</a>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="contact.html">Contact</a>
+        <a href="disclamer.html">Disclaimer</a>
+    </nav>
+    <div class="hamburger" id="menuBtn"><span></span><span></span><span></span></div>
+</header>
+
+<main class="page-content">
+    <h1 class="title">Exam Krack Library</h1>
+
+    <div class="filters">
+        <input type="text" id="searchInput" placeholder="🔍 Search PDFs...">
+        <select class="top-cat" id="subjectFilter">
+            <option value="all">📂 All Subjects</option>
+            <option value="Maths">📘 Maths</option>
+            <option value="Science">📘 Science</option>
+            <option value="Computer">📘 Computer</option>
+            <option value="Hindi">📘 Hindi</option>
+            <option value="Chemistry">📘 Chemistry</option>
+            <option value="Physics">📘 Physics</option>
+            <option value="Biology">📘 Biology</option>
+            <option value="Geometry">📘 Geometry</option>
+        </select>
+
+        <select class="top-cat" id="classFilter">
+            <option value="all">📂 All Classes</option>
+            <option value="Class - 1">📘 Class - 1</option>
+            <option value="Class - 2">📘 Class - 2</option>
+            <option value="Class - 3">📘 Class - 3</option>
+            <option value="Class - 4">📘 Class - 4</option>
+            <option value="Class - 5">📘 Class - 5</option>
+            <option value="Class - 6">📘 Class - 6</option>
+            <option value="Class - 7">📘 Class - 7</option>
+            <option value="Class - 8">📘 Class - 8</option>
+            <option value="Class - 9">📘 Class - 9</option>
+            <option value="Class - 10">📘 Class - 10</option>
+            <option value="Class - 11">📘 Class - 11</option>
+            <option value="Class - 12">📘 Class - 12</option>
+        </select>
+    </div>
+
+    <div class="cards-container">
+
+        <div class="card" data-title="Maths circle" data-subject="Maths" data-class="Class - 10">
+            <h3>Maths</h3>
+            <p>Circle</p>
+
+<!--#-->            <div class="button-container">
+                <a href="pdf/circles.pdf" download class="btn-card free">Download Basic</a>
+                <button class="btn-card premium" onclick="payNow('YOUR TITLE','pdf/1circles.pdf',10)">
+                    Get Advance (₹10)
+                </button>
+            </div>
+<!--#-->        </div>
+
+        <div class="card" data-title="Python computer Science course cource" data-subject="Computer" data-class="Class - 10">
+            <h3>Computer</h3>
+            <p>Python</p>
+
+            <div class="button-container">
+                <a href="pdf/Python.pdf" download class="btn-card free">Download Basic</a>
+                <button class="btn-card premium" onclick="payNow('YOUR TITLE','pdf/python1.pdf',10)">
+                    Get Advance (₹10)
+                </button>
+            </div>
+        </div>
+
+        <div class="card" data-title="html computer Science course cource" data-subject="Computer" data-class="Class - 7">
+            <h3>Computer</h3>
+            <p>Html</p>
+
+            <div class="button-container">
+                <a href="pdf/Html.pdf" download class="btn-card free">Download Basic</a>
+                <button class="btn-card premium" onclick="payNow('YOUR TITLE','pdf/Html1.pdf',10)">
+                    Get Advance (₹10)
+                </button>
+            </div>
+        </div> 
+        
+        <div class="card" data-title="css computer Science course cource" data-subject="Computer" data-class="Class - 7">
+            <h3>Computer</h3>
+            <p>Css</p>
+
+            <div class="button-container">
+                <a href="pdf/Css.pdf" download class="btn-card free">Download Basic</a>
+                <button class="btn-card premium" onclick="payNow('YOUR TITLE','pdf/Css1.pdf',10)">
+                    Get Advance (₹10)
+                </button>
+            </div>
+        </div>
+
+        <div class="card" data-title="js Js JS jScomputer Science course cource" data-subject="Computer" data-class="Class - 8">
+            <h3>Computer</h3>
+            <p>Js</p>
+
+            <div class="button-container">
+                <a href="pdf/Js.pdf" download class="btn-card free">Download Basic</a>
+                <button class="btn-card premium" onclick="payNow('YOUR TITLE','pdf/Js1.pdf',10)">
+                    Get Advance (₹10)
+                </button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Exam Krack. All Rights Reserved.</p>
+    <p class="footer-note">Please review our <a href="disclamer.html">Disclaimer</a> and <a href="terms.html">Terms of Service</a> before using our resources.</p>
+</footer>
+
+<script>
+document.getElementById("menuBtn").onclick = function() {
+    document.querySelector(".top-nav").classList.toggle("nav-active");
+};
+
+// FILTER FUNCTION
+function filterAll() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const subject = document.getElementById("subjectFilter").value;
+    const classFilter = document.getElementById("classFilter").value;
+
+    document.querySelectorAll(".card").forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const sub = card.dataset.subject;
+        const cls = card.dataset.class;
+
+        card.style.display =
+            (title.includes(searchValue) && // Keep this logic
+            (subject === 'all' || subject === sub) &&
+            (classFilter === 'all' || classFilter === cls))
+            ? "block" : "none";
+    });
+}
+
+document.getElementById("searchInput").addEventListener("input", filterAll);
+document.getElementById("subjectFilter").addEventListener("change", filterAll);
+document.getElementById("classFilter").addEventListener("change", filterAll);
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function payNow(pdfTitle, pdfFile, amount){
+    document.body.classList.add('rzp-open');
+
+    let options = {
+        key: "YOUR_KEY_ID",
+        amount: amount*100,
+        currency:"INR",
+        name:"Exam Krack Library",
+        description: pdfTitle + " - Advance PDF",
+
+        handler: function(response){
+            alert("Payment successful! PDF will download.");
+
+            let paid = JSON.parse(sessionStorage.getItem("paidPDFs")||"[]");
+            if(!paid.includes(pdfFile)) paid.push(pdfFile);
+            sessionStorage.setItem("paidPDFs", JSON.stringify(paid));
+
+            let a = document.createElement('a');
+            a.href = pdfFile; // The file to download
+            a.download = pdfFile.split('/').pop();
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            let btn = document.querySelector("button.premium[onclick*='"+pdfFile+"']");
+            if(btn) btn.outerHTML = `<a href="${pdfFile}" download><button>PDF DOWNLOAD</button></a>`;
+        },
+
+        theme:{color:"#3399cc"}
+    };
+
+    let rzp = new Razorpay(options);
+
+    rzp.on('payment.failed', function(){ 
+        document.body.classList.remove('rzp-open'); 
+    });
+
+    rzp.open();
+}
+
+window.addEventListener('load', ()=>{
+    let paid = JSON.parse(sessionStorage.getItem("paidPDFs")||"[]");
+    paid.forEach(pdfFile=>{
+        let btn = document.querySelector("button.premium[onclick*='"+pdfFile+"']");
+        if(btn) btn.outerHTML = `<a href="${pdfFile}" download><button>PDF DOWNLOAD</button></a>`;
+    });
+});
+</script>
+
+</body>
+</html>

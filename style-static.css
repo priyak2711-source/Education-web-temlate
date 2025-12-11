@@ -1,0 +1,41 @@
+/* Inherits body styles from style1.css */
+
+/* PAGE CONTENT WRAPPER */
+.page-content {
+    padding: 120px 20px 60px; /* Top padding for fixed nav */
+    min-height: calc(100vh - 157px); /* Full height minus nav and footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.static-container {
+    background: rgba(28, 22, 66, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+    border: 1px solid rgba(108, 99, 255, 0.2);
+}
+
+.static-container h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.static-container p {
+    font-size: 18px;
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .static-container {
+        padding: 30px;
+    }
+}

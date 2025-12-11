@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+        <a href="index.html" class="logo">Exam Krack</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="contact.html">Contact</a>
+            <a href="disclamer.html">Disclaimer</a>
+        </nav>
+        <div class="hamburger" id="menuBtn"><span></span><span></span><span></span></div>
+    </header>
+
+    <main class="page-content">
+        <h1 class="title">Download Exam Krack</h1>
+        <p class="hero-sub">Select your platform to download the app</p>
+
+        <div class="button-area">
+            <a href="C:\Users\anupamsingh\Desktop\ㅤ\coming soon!.txt" download class="btn win">Download for Windows(coming soon)</a>
+            <a href="app.apk" download class="btn android">Download for Android</a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Exam Krack. All Rights Reserved.</p>
+        <p class="footer-note">Please review our <a href="disclamer.html">Disclaimer</a> and <a href="terms.html">Terms of Service</a> before using our resources.</p>
+    </footer>
+
+    <script>
+        document.getElementById("menuBtn").onclick = function() {
+            document.querySelector(".top-nav").classList.toggle("nav-active");
+        };
+    </script>
+</body>
+</html>

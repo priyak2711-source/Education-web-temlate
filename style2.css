@@ -1,0 +1,65 @@
+/* Inherits body styles from style1.css */
+
+/* PAGE CONTENT WRAPPER */
+.page-content {
+    min-height: calc(100vh - 157px); /* Full height minus nav and footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 20px 60px;
+}
+
+.title {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.hero-sub {
+    margin-bottom: 60px;
+}
+
+/* Button Area */
+.button-area {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Buttons */
+.btn {
+    padding: 20px 60px;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Platform Colors */
+.win {
+    background-color: var(--primary);
+    box-shadow: 0 5px 20px rgba(108, 99, 255, 0.4);
+}
+
+.android {
+    background-color: #a4c639; /* Android Green */
+    box-shadow: 0 5px 20px rgba(164, 198, 57, 0.4);
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 480px) {
+    .title { font-size: 32px; }
+    .button-area { flex-direction: column; gap: 25px; }
+    .btn { font-size: 18px; padding: 15px 40px; width: 100%; }
+}
